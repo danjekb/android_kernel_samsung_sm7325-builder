@@ -71,9 +71,8 @@ setup_toolchain() {
 add_patches() {
     # Set Makefile to be Warnings instead of Werror
     sed -i 's/-Werror=\([a-zA-Z0-9-]*\)/-W\1/g' Makefile
-    # Disable Samsung SEC summary driver
-    sed -i 's/CONFIG_SEC_DEBUG_SUMMARY=y/# CONFIG_SEC_DEBUG_SUMMARY is not set/' $MAIN_DEFCONFIG
-    sed -i 's/CONFIG_SEC_DEBUG_SUMMARY_DRIVER=y/# CONFIG_SEC_DEBUG_SUMMARY_DRIVER is not set/' $MAIN_DEFCONFIG
+    # Enable CONFIG_SECTION_MISMATCH_WARN_ONLY to avoid build failure
+    echo "CONFIG_SECTION_MISMATCH_WARN_ONLY=y" >> $MAIN_DEFCONFIG
     # Import sec_debug_summary_coreinfo.h
     sed -i '/include <linux\/sec_debug.h>/a #include <linux/samsung/debug/sec_debug_summary_coreinfo.h>' kernel/module.c
     # Apply general config patches
