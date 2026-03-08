@@ -69,6 +69,8 @@ setup_toolchain() {
 
 # Add patches function
 add_patches() {
+    # Set Makefile to be Warnings instead of Werror
+    sed -i 's/-Werror=\([a-zA-Z0-9-]*\)/-W\1/g' Makefile
     # Disable Samsung SEC summary driver
     sed -i 's/CONFIG_SEC_DEBUG_SUMMARY=y/# CONFIG_SEC_DEBUG_SUMMARY is not set/' $MAIN_DEFCONFIG
     sed -i 's/CONFIG_SEC_DEBUG_SUMMARY_DRIVER=y/# CONFIG_SEC_DEBUG_SUMMARY_DRIVER is not set/' $MAIN_DEFCONFIG
