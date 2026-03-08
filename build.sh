@@ -69,6 +69,9 @@ setup_toolchain() {
 
 # Add patches function
 add_patches() {
+    # Disable Samsung SEC summary driver
+    sed -i 's/CONFIG_SEC_DEBUG_SUMMARY=y/# CONFIG_SEC_DEBUG_SUMMARY is not set/' $MAIN_DEFCONFIG
+    sed -i 's/CONFIG_SEC_DEBUG_SUMMARY_DRIVER=y/# CONFIG_SEC_DEBUG_SUMMARY_DRIVER is not set/' $MAIN_DEFCONFIG
     # Apply general config patches
     echo "Tuning the rest of default configs..."
     sed -i 's/# CONFIG_PID_NS is not set/CONFIG_PID_NS=y/' $MAIN_DEFCONFIG
