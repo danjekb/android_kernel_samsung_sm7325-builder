@@ -72,7 +72,7 @@ jobs:
             rm -rf AnyKernel3
           fi
           git clone https://github.com/riarumoda/AnyKernel3 AnyKernel3 --depth=1
-          cp android_kernel_samsung_sm7325/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/
+          cp android_kernel_samsung_sm7325/out/arch/arm64/boot/Image AnyKernel3/
           if [[ "${{ matrix.build-type }}" == "a52sxq" ]]; then
             sed -i 's/supported.versions=11-16/supported.versions=13-16/' AnyKernel3/anykernel.sh
             sed -i 's/device.name1=sweet/device.name1=a52s/' AnyKernel3/anykernel.sh
@@ -96,3 +96,10 @@ jobs:
           name: perf-neon-${{ matrix.build-type }}-testing-${{ steps.ts.outputs.DATE }}-${{ steps.ts.outputs.TIME }}
           path: |
             AnyKernel3/*
+      
+      - name: Pack & upload artifacts (output)
+        uses: actions/upload-artifact@v6
+        with:
+          name: output-${{ matrix.build-type }}
+          path: |
+            android_kernel_samsung_sm7325/out
