@@ -74,6 +74,8 @@ add_patches() {
     # Disable Samsung SEC summary driver
     sed -i 's/CONFIG_SEC_DEBUG_SUMMARY=y/# CONFIG_SEC_DEBUG_SUMMARY is not set/' $MAIN_DEFCONFIG
     sed -i 's/CONFIG_SEC_DEBUG_SUMMARY_DRIVER=y/# CONFIG_SEC_DEBUG_SUMMARY_DRIVER is not set/' $MAIN_DEFCONFIG
+    # Import sec_debug_summary_coreinfo.h
+    sed -i '/include <linux\/sec_debug.h>/a #include <linux/samsung/debug/sec_debug_summary_coreinfo.h>' kernel/module.c
     # Apply general config patches
     echo "Tuning the rest of default configs..."
     sed -i 's/# CONFIG_PID_NS is not set/CONFIG_PID_NS=y/' $MAIN_DEFCONFIG
