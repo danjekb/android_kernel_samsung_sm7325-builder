@@ -138,7 +138,54 @@ compile_kernel() {
     git commit -m "cleanup: applied patches before build" &> /dev/null
     # Start compilation
     echo "Starting kernel compilation..."
-    make -s O=out ARCH=arm64 $COMPILE_MAIN_DEFCONFIG &> /dev/null
+    make O=out \
+        ARCH=arm64 \
+        LLVM=1 \
+        LLVM_IAS=1 \
+        CC=clang \
+        LD=ld.lld \
+        AR=llvm-ar \
+        AS=llvm-as \
+        NM=llvm-nm \
+        OBJCOPY=llvm-objcopy \
+        OBJDUMP=llvm-objdump \
+        STRIP=llvm-strip \
+        CROSS_COMPILE=aarch64-linux-android- \
+        CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+        CLANG_TRIPLE=aarch64-linux-gnu- \
+        $ACTUAL_MAIN_DEFCONFIG
+    yes "" | make O=out \
+        ARCH=arm64 \
+        LLVM=1 \
+        LLVM_IAS=1 \
+        CC=clang \
+        LD=ld.lld \
+        AR=llvm-ar \
+        AS=llvm-as \
+        NM=llvm-nm \
+        OBJCOPY=llvm-objcopy \
+        OBJDUMP=llvm-objdump \
+        STRIP=llvm-strip \
+        CROSS_COMPILE=aarch64-linux-android- \
+        CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+        CLANG_TRIPLE=aarch64-linux-gnu- \
+        olddefconfig
+    yes "" | make O=out \
+        ARCH=arm64 \
+        LLVM=1 \
+        LLVM_IAS=1 \
+        CC=clang \
+        LD=ld.lld \
+        AR=llvm-ar \
+        AS=llvm-as \
+        NM=llvm-nm \
+        OBJCOPY=llvm-objcopy \
+        OBJDUMP=llvm-objdump \
+        STRIP=llvm-strip \
+        CROSS_COMPILE=aarch64-linux-android- \
+        CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+        CLANG_TRIPLE=aarch64-linux-gnu- \
+        syncconfig
     make -j$(nproc --all) \
         O=out \
         ARCH=arm64 \
