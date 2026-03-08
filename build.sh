@@ -156,7 +156,7 @@ compile_kernel() {
         CROSS_COMPILE=aarch64-linux-android- \
         CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
         CLANG_TRIPLE=aarch64-linux-gnu- \
-        $ACTUAL_MAIN_DEFCONFIG
+        $COMPILE_MAIN_DEFCONFIG
     yes "" | make O=out \
         ARCH=arm64 \
         LLVM=1 \
