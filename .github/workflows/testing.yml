@@ -93,7 +93,7 @@ jobs:
       - name: Pack & upload artifacts (All builds)
         uses: actions/upload-artifact@v6
         with:
-          name: perf-neon-${{ matrix.build-type }}-testing-${{ steps.ts.outputs.DATE }}-${{ steps.ts.outputs.TIME }}
+          name: crappy-kernel-${{ matrix.build-type }}-lol-${{ steps.ts.outputs.DATE }}-${{ steps.ts.outputs.TIME }}
           path: |
             AnyKernel3/*
       
