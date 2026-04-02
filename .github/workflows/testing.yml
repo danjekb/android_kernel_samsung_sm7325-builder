@@ -42,11 +42,11 @@ jobs:
           fi
           echo "Cloning kernel sources..."
           if [[ "${{ matrix.build-type }}" == "a52sxq" ]]; then
-            git clone https://github.com/LineageOS/android_kernel_samsung_sm7325 --depth=1 -b lineage-23.2
+            git clone https://github.com/LineageOS/android_kernel_samsung_sm7325 --depth=1 -b lineage-22.2
           elif [[ "${{ matrix.build-type }}" == "a73xq" ]]; then
-            git clone https://github.com/LineageOS/android_kernel_samsung_sm7325 --depth=1 -b lineage-23.2
+            git clone https://github.com/LineageOS/android_kernel_samsung_sm7325 --depth=1 -b lineage-22.2
           elif [[ "${{ matrix.build-type }}" == "m52xq" ]]; then
-            git clone https://github.com/LineageOS/android_kernel_samsung_sm7325 --depth=1 -b lineage-23.2
+            git clone https://github.com/LineageOS/android_kernel_samsung_sm7325 --depth=1 -b lineage-22.2
           fi
           echo "Copying buildscript..."
           cp build.sh android_kernel_samsung_sm7325/
