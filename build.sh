@@ -28,8 +28,8 @@ setup_environment() {
     export COMPILE_MAIN_DEFCONFIG="vendor/$MAIN_DEFCONFIG_IMPORT"
     # KernelSU Settings
     if [[ "$KERNELSU_SELECTOR" == "--ksu=KSU_BLXX" ]]; then
-        export KSU_SETUP_URI="https://raw.githubusercontent.com/rsuntk/KernelSU/refs/heads/main/kernel/setup.sh"
-        export KSU_BRANCH="main"
+        export KSU_SETUP_URI="https://raw.githubusercontent.com/KernelSU-Legacy/KernelSU-Legacy/refs/heads/v1.1.1/kernel/setup.sh"
+        export KSU_BRANCH="v1.1.1"
         export KSU_GENERAL_PATCH="https://github.com/JackA1ltman/NonGKI_Kernel_Build_2nd/raw/refs/heads/mainline/Patches/susfs_inline_hook_patches.sh"
     elif [[ "$KERNELSU_SELECTOR" == "--ksu=KSU_NEXT" ]]; then
         export KSU_SETUP_URI="https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh"
